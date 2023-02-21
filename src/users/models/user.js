@@ -9,8 +9,8 @@ export class User {
     this.isActive = isActive
     this.balance = balance
     this.avatar = avatar
-    this.first_name = firstName
-    this.last_name = lastName
+    this.firstName = firstName
+    this.lastName = lastName
     this.gender = gender
   }
 
