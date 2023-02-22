@@ -1,7 +1,18 @@
 import modalHtml from './render-modal.html?raw'
 import './render-modal.css';
 
-let modal
+let modal, form
+
+//TODO: load a user by id
+export const showModal = () => {
+  modal?.classList.remove('hide-modal')
+}
+
+export const hideModal = () => {
+  modal?.classList.add('hide-modal')
+
+  //TODO: Reset form
+}
 
 /**
  * 
@@ -14,6 +25,17 @@ export const renderModal = ( element ) => {
   modal = document.createElement('div')
   modal.innerHTML = modalHtml
   modal.className = 'modal-container hide-modal'
+  form = modal.querySelector('form')
+
+  modal.addEventListener('click', ( event ) => {
+    if ( event.target.className === 'modal-container' ) {
+      hideModal()
+    }
+  })
+
+  form.addEventListener('submit', ( event ) => {
+    event.preventDefault()
+  })
 
   element.append( modal )
 
