@@ -63,6 +63,8 @@ export const renderModal = ( element, callback ) => {
     const formData = new FormData( form )
     const user = { ...loadedUser }
 
+    if( !formData.get( 'isActive' ) ) formData.append('isActive', 'off')
+
     for (const [ key, value ] of formData) {
       if ( key === 'balance' ) {
         user[ key ] = +value
