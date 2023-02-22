@@ -22,6 +22,7 @@ export const saveUser = async( userData ) => {
 
 const createUser = async( user ) => {
 
+  console.log({user})
   const url = `${ import.meta.env.VITE_BASE_URL }/users`
   const res = await fetch( url, {
     method: 'POST',
