@@ -10,8 +10,7 @@ export const showModal = () => {
 
 export const hideModal = () => {
   modal?.classList.add('hide-modal')
-
-  //TODO: Reset form
+  form?.reset()
 }
 
 /**
@@ -35,6 +34,28 @@ export const renderModal = ( element ) => {
 
   form.addEventListener('submit', ( event ) => {
     event.preventDefault()
+
+    const formData = new FormData( form )
+    const user = {}
+
+    for (const [ key, value ] of formData) {
+      if ( key === 'balance' ) {
+        user[ key ] = +value
+        continue
+      }
+
+      if ( key === 'isActive' ) {
+        user[ key ] = ( value === 'on' ) ? true : false
+        continue
+      }
+      
+      user[ key ] = value
+    }
+
+    // console.log( user )
+    //TODO: save users
+
+    hideModal()
   })
 
   element.append( modal )
