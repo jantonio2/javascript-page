@@ -1,3 +1,4 @@
+import { userModelToLocalhost } from '../mappers/user-to-localhost.mapper'
 import { User } from '../models/user'
 
 /**
@@ -8,14 +9,20 @@ export const saveUser = async( userData ) => {
   
   const user = new User( userData )
 
-  //TODO: a mapper is needed here
+  if ( !user.firstName || !user.lastName )
+    throw 'First and last name are required'
+
+  if ( !user.balance )
+    throw 'Balance is required'
+
+  const userToSave = userModelToLocalhost( user )
 
   if ( user.id ) {
     throw `Not implemented yet`
     return
   }
 
-  const updatedUser = await createUser( user )
+  const updatedUser = await createUser( userToSave )
   return updatedUser
 
 }
